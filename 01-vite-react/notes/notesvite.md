@@ -50,3 +50,15 @@ const ReactElement = {
 // problem while creating our own element and rndering because the render of dom expect some predefined syntax
 
 ![alt text](image.png)
+
+
+## here we use the evaluated expression 
+how to use 
+![alt text](image-1.png)
+
+---
+now we see ki ham usee parentherthis me kuch direct expression hi kyu nahi likh dete hai bajaye evaluated expression ke 
+
+![alt text](image-2.png)
+
+----
