@@ -1,6 +1,7 @@
 // import { StrictMode } from 'react'
 import React from "react";
 import { createRoot } from "react-dom/client";
+import App from "./App";
 
 // import App from './App.jsx'
 
@@ -31,13 +32,21 @@ import { createRoot } from "react-dom/client";
 // const anotherElement =   <a href="https://www.google.com" target='_blank'>visit google</a>
 
 // lets make the object but by react ka create elment method
+
+const anotherUser = 'ujjwal nirmal'
+
 const renderElement = React.createElement(
     // first thing to give is the tag type only
     'a',
     // then propertyies props in an obejct 
     {href:'https://www.google.com', target : '_blank'},
     // then at the last  we have the write the text 
-    'click here to go to google'
+    'click here to go to google',
+    // yaha pe at the last ham evaluated expression hi pass karte hai // ye syntax hai react create element ka 
+    anotherUser
+
+    // but ham kya object hi bana rahe hai toh kya object ke ander if else  likh sakte hai kya nahi kyuki object ke ander ham key vlaue pair ko lete hai 
+    // thats why ham jab App.jsx ke ander return me tag ke ander {} isme evaluated expression dete hai naa ki if else pura kyuki usse object me badla nahi jaa sakte hai 
 )
 
 createRoot(document.getElementById("root")).render(
@@ -57,5 +66,6 @@ createRoot(document.getElementById("root")).render(
     // now i can use the object of renderElement becuase it is maded by the React.createElement method 
     renderElement
 
-    // lets 
+    // lets take the app.jsx file  angain and learn the evaluated expression = varibale injection
+    // <App/>
 );
