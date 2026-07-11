@@ -43,7 +43,7 @@ function App() {
 
           <Card companyname = "Apple" btnText = "Visit Apple Store"/>
           <Card companyname = "HP" />
-          <Card companyname = "Dell" />
+          <Card companyname = "Dell" btnText="Visit Dell Store" />
           <Card companyname = "Acer" />
           <Card companyname = "Lenovo" />
           <Card companyname = "Asus" />
