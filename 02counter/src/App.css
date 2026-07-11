@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4338ca,#7c3aed,#0f172a);
+}
+
+#root{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#container{
+    width:35%;
+    padding:40px 35px;
+    text-align:center;
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:24px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35);
+}
+
+#container h1{
+    color:#fff;
+    font-size:3rem;
+    margin-bottom:50px;
+    font-weight:700;
+    text-transform: capitalize;
+}
+h2 span{
+    display:inline-block;
+    margin-left:10px;
+    padding:8px 18px;
+
+    background:linear-gradient(135deg,#2291c5,#1637a3);
+    color:#fff;
+
+    border-radius:12px;
+
+    font-size:2rem;
+    font-weight:700;
+
+    box-shadow:0 8px 20px rgba(34,197,94,.4);
+
+    transition:all .3s ease;
+}
+
+h2 span:hover{
+    transform:scale(1.08);
+}
+
+#container h2{
+    margin-bottom:35px;
+    color:#fff;
+    font-size:2rem;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+#container button{
+    width:220px;
+    padding:14px;
+    margin:10px 0;
+
+    border:none;
+    border-radius:14px;
+
+    font-size:1rem;
+    font-weight:600;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:linear-gradient(135deg,#6366f1,#8b5cf6);
+
+    transition:all .3s ease;
+}
+
+#container button:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(99,102,241,.45);
+}
+
+#container button:active{
+    transform:scale(.96);
+}
+#container button:nth-child(4){
+    background:linear-gradient(135deg,#e20202,#f97316);
+}
+
+#container button:last-child{
+    background:linear-gradient(135deg,#44c1ef,#1693f9);
+}
+
+#container button:last-child:hover{
+    box-shadow:0 15px 30px rgba(239,68,68,.4);
+}
