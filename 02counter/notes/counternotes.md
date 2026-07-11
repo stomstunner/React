@@ -34,3 +34,7 @@ export default App;
 
 ## how we use the useState hook
 ![alt text](image.png)
+
+
+## important thing for setCounter
+![alt text](image-1.png)
