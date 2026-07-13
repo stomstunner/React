@@ -1,0 +1,23 @@
+body {
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+  background-image: url("assets/mountains-minimalist-scenery-wallpaper-3440x1440_15.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position: center; */
+  background-position: left center;
+}
+/* Poore page par select hone wale text ka color change karne ke liye */
+::selection {
+  background-color: rgb(212, 58, 58); /* Aapka pasandida background color */
+  color: #ffffff; /* Text ka color */
+}
+
+/* Ya phir sirf display input box ke andar selection badalne ke liye */
+input.display::selection {
+  background-color: rgb(212, 58, 58);
+  color: #ffffff;
+}
