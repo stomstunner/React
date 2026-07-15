@@ -13,8 +13,8 @@ export const TodoContext = createContext({
             // yaha ham bass model yaad rakhne ke liye bana rahe hai ki kya kya hoga todo me jisse ham global context me rakhna chahate hai 
             id: 1,
             todo: "Todo Msg",
-            conmpleted : false
-        },{}
+            completed : false
+        },
     ] ,
     // ye todos hamra propertyr hai jaisse ki hamre pass theme me dark paroperty tha but yaha pe hamre pass array hai
 
