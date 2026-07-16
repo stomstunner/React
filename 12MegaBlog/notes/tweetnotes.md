@@ -84,3 +84,42 @@
 ## then we install the react hook form for live state changeing 
 
 ` npm install react-hook-form `
+
+
+---
+## now we make the evironment varibale file isme hamre sare secret chize hoti hai password and all
+
+## isko banane ke liye hame hamesaha .env likhna parta hai aur usse .gitignore me daal dete hai taki ham ye file kisi ko na dikhaye 
+
+# .env file hameasha hamre root folder me hota hai jaha pe readme.md file hoga like
+
+## so we  are making the app with the help of vite so we have to use the storing of varibale like keys or databse password in some specfic way 
+
+##  if we want to store some secret key then we have to write 
+
+# VITE_SOME_SECRETE_KEY = 'jsvjksd'
+
+# DB_PASSWORD = nsnvjsnlvn
+
+## toh ager hame ye secret key aur password ko access karna hai toh uske liye bhi hamre pass kuch method hote hai 
+
+# `import.meta.env.VITE_SOME_KEY` // iska answer hamre pass toh  aa jayega but 
+# `import.meta.env.DB_PASSWORD ` // iska answer undefined hi print hoga 
+
+---
+# now the important chix ki ham databse banayenge usak id copy paset karne .env me then ham usme table create karenge aur uska is bhi paste karnege hamre .env me then ham jo table bana hua hai uske ander jaayenge aur 
+
+## aur setting me jaa ke permissions ko eanbale karenge users ke liye
+
+## in the articles table we make these coloumns banayenge 
+![alt text](image.png)
+
+## then we create a index
+
+----
+ # then we go the storeage section create bucket for our image
+
+---
+## now we make the a folder jaha pe ham apna sara secret chiz rakhenge kyuki kai baar .env file se woh load hi nahi karta hai 
+
+
