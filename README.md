@@ -95,3 +95,9 @@ first outcome ki hamne apne fucntion ka naam capital letter melikhna hai aur uss
  then ham jab vite ya koi parsal ke help se react use kar rahe hai tho hame .jsx file banayna hai **signify that ki woh ek component hai**
   
   
+
+  ## for adding the tailwindcss just go the your project folder useing cd 
+  // then 
+  //  npm install tailwindcss @tailwindcss/vite
+  // then modify the vitfonfig file and add
+  // @import "tailwindcss" to the css files
