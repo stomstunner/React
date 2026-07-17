@@ -114,6 +114,46 @@ export class Service{
         }
 
     }
+
+    // now we make the upload file method .. jisme ham bass createfile method ka use karnege 
+    async uploadFile(file){
+        try {
+            // yaha pe ham return kar denge sari vlaues ko 
+            return await this.bucket.createFile(
+                conf.appwriteBucketId,
+                ID.unique(),
+                file
+            )
+            // createFile me hame bass bucket id and unique id and jo hamne file liya tha usi ko daal denge aur isse ciz dalne ke baad jo hame chize return me milega usse ham koi varibale ma naa daal ke direct return kar denge jisse ki ham baad me use kar sakte hai 
+        } catch (error) {
+            throw error
+        }
+    }
+
+    // so upload file karte time hame return me file ka id hi milega jisse ki kam create post me featured image ko de denge 
+
+    // now lets make the deletefile jisme ki hame bass file ka id dena hai 
+    async deleteFile(fileId){
+        try {
+            await this.bucket.deleteFile(
+                conf.appwriteBucketId,
+                fileId
+            )
+            return true
+        } catch (error) {
+            throw error 
+            return false
+        }
+    }
+
+    // now we make the filePreview function jisse call kar ke ham ui pe compress image show kar sake 
+
+    async getFilePreview(fileId){
+        return this.bucket.getFilePreview(
+            conf.appwriteBucketId,
+            fileId
+        )
+    }
 }
 
 const service = new Service()
