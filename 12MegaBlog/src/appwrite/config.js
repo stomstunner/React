@@ -20,7 +20,7 @@ export class Service{
         .setProject(conf.appwriteProjectId)
 
         // now hame databse aur bucket hmara hamesha client se hi banta hai 
-        this.databses = new Databases(this.client)
+        this.databases = new Databases(this.client)
         this.bucket = new Storage(this.bucket)
 
     }
@@ -45,6 +45,42 @@ export class Service{
             // iske ander hame tin chize toh sequence me deni hi hai sabse pahle databaseid then, collection id , uinque id or document id 
         } catch (error) {
             throw error
+        }
+    }
+
+    // lets create a method for update the post 
+    async updatePost( slug, {title , featuredImage, content, status}){
+        try {
+            // here we write ki ham ky kya update karne ke baad return karenge UI pe , iske like hame updateDocument ka use karna hai method ko jo ki databseid, then collection id then hamra document id lega, hame slug ko as a doucment id liya hai , usierid ko bhi le sakte hai then , ham return usse ham kya return karne jo ki user ne diya hai naya wla title ager diya hoga to nahi toh purana wala toh hoga hi aur naya content ya featured image ya status ki active hai ya nahi 
+            return await this.databases.updateDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug,
+                {
+                    title, 
+                    content,
+                    featuredImage,
+                    status
+                }
+            )
+        } catch (error) {
+            throw error 
+        }
+    }
+
+    // now we make the deletedocument feature ki delete karne ke liye kye ky chaiye 
+    async deletePost(slug){
+        try {
+            this.databases.deleteDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug
+            )
+            // now we juct return true and we have to handle the true on front end 
+            return true;
+        } catch (error) {
+            throw error ;
+            return false
         }
     }
 }
