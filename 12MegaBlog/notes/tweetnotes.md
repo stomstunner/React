@@ -189,3 +189,10 @@ async uploadFile(file){
         }
     }
 ```
+
+---
+# redux store folder banayenge aur uske ander store.js file 
+
+---
+# then we make the feature or sliceses jo ki kuch nahi bass fucntions hote hai jo ki reducers ko rakhta hai apne pass aur store se baat karta hai 
+// slice is nothing but a part of store jo ki apna ek seperate kaan karta hai uske ander hote hai reducers ko ki ek fucntion hote hai data update karne ke liye 
