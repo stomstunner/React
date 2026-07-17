@@ -83,6 +83,20 @@ export class Service{
             return false
         }
     }
+
+    // now we make a fucntion that will give use 1 single post 
+    async getPost(slug){
+        try {
+            return await this.databases.getDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug
+            )
+        } catch (error) {
+            throw  error 
+            return false
+        }
+    }
 }
 
 const service = new Service()
