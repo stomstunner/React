@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 // lets import the conf file
 import conf from "../conf/conf.js"
 
@@ -40,12 +41,41 @@ export class Authservice {
     async createAccount({email, password, name} ){
         try {
             // now we use the await me account createion method
-            await this.account.create(email, password, name);
+            // and we need the id.unique in first place 
+           const userAccount =  await this.account.create(ID.unique(), email, password, name);
+
+           // now we check ki hamra useraccount hai ya nahi ager hai ban gaya hai toh ham login direct karwa denge  ager nahi hai toh retun kar denge  
+
+           if(userAccount){
+            // hamne yahi calss me do property banaya tha create account and login so hamrara ager account ban gaya hai toh direct ham usse login pe daal denge uske liye ham return kar denge this.login({email, password})
+            return this.login({email, password})
+           }else return userAccount
+
         } catch (error) {
             throw error
         }
     }
+
+    // now we make  a login functionality jo ki user se bass email aur password lega 
+    // and login karne ke liye hamre pass createEmailSession hota hai 
+
+    async login ( { email, password}){
+        try {
+            // yaha pe ham direct return kar denge hamre jo bhi chiz aayega login session create karne ke baad 
+
+            const session =  this.account.createEmailPasswordSession(email, password)
+            return session 
+        } catch (error) {
+            throw error
+        }
+    }
+
+
+    // now we make a method ki 
+
 }
+
+// now hame ye create app me koi cher char nahi karni paregi future me kyuki hame bass consturctor me change kanrna parega bass jiss bhi backend se woh chize initilize hogi woh bass likho but hamra create accout ke liye toh hame hames bass username aur email hi lena aprega 
 
 const authservice = new Authservice()
 export default authservice
