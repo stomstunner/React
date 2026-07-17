@@ -71,7 +71,28 @@ export class Authservice {
     }
 
 
-    // now we make a method ki 
+    // now we make a method ki jo check kare ki hamra user abhi login hai ya nahi iss session me 
+
+    async getCurrentUser(){
+        try {
+            return await this.account.get()
+            // so hamare pass ye accout.get  kar ke property aathi hai jo ki hamra abhi current status baanta hai 
+        } catch (error) {
+                throw error
+        }
+        // yaha try catch ke baar aa ke ham return kar denge null ko kisse ahmra ager abhi kuch nahi aayega account.get se toh null aaeyga hi return toh hoga hi null in try but ager ksis bhi wajah se ahmra try catch me problem aa gai toh bahar ham return kar denge null ko 
+        return null;
+    }
+
+    // now we make the logout method jisme hame bass session ko delete karna hai 
+
+    async logout(){
+        try {
+            return await this.account.deleteSessions()
+        } catch (error) {
+            throw error;
+        }
+    }
 
 }
 
