@@ -135,3 +135,39 @@
 ----
 
 ## now we make the services for storange and jo ham datebase use kar rahe hai image dalne ke liye
+
+----
+
+```js
+ async createPost({title, slug, content, featuredImage, status, userId}){
+        try {
+            // here we return in await hamra ek created post jo ki hamra return karega databse se createDocument ka use kar ke 
+            return await this.databses.createDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug,    
+                {
+                    title,
+                    content,
+                    featuredImage,
+                    status,
+                    userId
+                }
+                // then at the last hame ky ky save karna hai usse likhnge 
+            )
+            // iske ander hame tin chize toh sequence me deni hi hai sabse pahle databaseid then, collection id , uinque id or document id 
+        } catch (error) {
+            throw error
+        }
+    }
+
+    // lets create a method for update the post 
+    async updatePost( slug, {title , featuredImage, content, status}){
+        try {
+            // here we write ki ham ky kya update karne ke baad return karenge ui pe 
+            return await 
+        } catch (error) {
+            throw error 
+        }
+    }
+```
