@@ -132,3 +132,6 @@
 
 ## then we can make the user account.create , jisme hame id toh milega hi apprite se aur bass email aur password dalna rahega
 
+----
+
+## now we make the services for storange and jo ham datebase use kar rahe hai image dalne ke liye
