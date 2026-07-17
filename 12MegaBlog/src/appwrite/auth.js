@@ -31,7 +31,20 @@ export class Authservice {
     }
 
     // now we make a calss ki ham jaisse hi iss authservice se create account bananana chahate hai toh ham bass appwrite ke fucntion ko call kar denge 
-    // kyuki ham nahi chahate hai ki ham app me har jaagh jaa ke aur apna auth ko change kare ager baad me hame apna appwrite ko chane karna pare toh so we are making a wrapper ki hame nahi pata ki ham
+    // kyuki ham nahi chahate hai ki ham app me har jaagh jaa ke aur apna auth ko change kare ager baad me hame apna appwrite ko chane karna pare toh so we are making a wrapper ki hame nahi pata ki ham nahi pata ki user account kaisse banana hai ham basss ye class ko call kar denge ye bana dega .. under the hood ye kya backend use kar rha hai usse ham change kar sakte hai futer me 
+
+    // so hame bass ye auth service ke class me createAccount me data pass kar dena hai aur account ban jata hai 
+
+    // so for making we have to destructure ki hamne bass object chaiye 
+
+    async createAccount({email, password, name} ){
+        try {
+            // now we use the await me account createion method
+            await this.account.create(email, password, name);
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 const authservice = new Authservice()
