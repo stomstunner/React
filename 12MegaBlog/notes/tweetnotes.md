@@ -171,3 +171,21 @@
         }
     }
 ```
+
+----
+# for upload the file
+```js
+async uploadFile(file){
+        try {
+            // yaha pe ham return kar denge sari vlaues ko 
+            return await this.bucket.createFile(
+                conf.appwriteBucketId,
+                ID.unique(),
+                file
+            )
+            // createFile me hame bass bucket id and unique id and jo hamne file liya tha usi ko daal denge aur isse ciz dalne ke baad jo hame chize return me milega usse ham koi varibale ma naa daal ke direct return kar denge jisse ki ham baad me use kar sakte hai 
+        } catch (error) {
+            throw error
+        }
+    }
+```
