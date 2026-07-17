@@ -97,6 +97,23 @@ export class Service{
             return false
         }
     }
+    // now we want ki ham sare post ko dekh but hamare pass woh post na aaye jinka status inactive hai 
+
+    // thats why we are using the databse query we need only the data has staus of active == status is  our index 
+    // ab iss parameter ke ander ham ek variable banayenge jo ki khud se uni chzizo ko lega ko query me likha hua hai 
+    // woh variable me ham ek jo saman rakhenge usko ek query likhenge jo ki array me hoga 
+    async getPosts(queries =[Query.equal('status', 'active')]){
+        try {
+            return await this.databases.listDocuments(
+                    conf.appwriteDatabaseId,
+                    conf.appwriteCollectionId,
+                    queries
+            )
+        } catch (error) {
+            throw error 
+        }
+
+    }
 }
 
 const service = new Service()
