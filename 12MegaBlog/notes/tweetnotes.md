@@ -226,3 +226,6 @@ and ham bass uss logo ko return kar denge
 ---
 ## now we make the Select file jisme just ham woh component banayenge jo ham post ke ander jaa ke select karnte hai na ki active hai ya nahi hai 
 
+---
+
+## now we make the componets of card jike ander hme data dikhta hai aur uspe click karne se ek window open ho jata hai 
