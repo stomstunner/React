@@ -202,3 +202,15 @@ async uploadFile(file){
 ## now we make the componets like header and footer export them through a index.js file
 
 ----
+
+## now we make the container jiske ander ham bass ek container banayenge jo ki bass kind of wrapper hoga jo as it is apni vlaues ko displays karwa dega 
+// linke ham input filed ke har ek field ko alag alag nahi banayenge bass usi ko as a components bana denge 
+
+---
+## then we add the code for footer and import the links and for logo setion we make a componets because we can reuse that componets 
+// jo ki bass we property ko le sakta hai like width=100px  
+and ham bass uss logo ko return kar denge 
+
+---
+## the header section is quite  intresting ki ham bass unhi ko logout buton dikhayenge jo login hai aur aur jo login nahi hai unko login button dikhayenge  
+## so uske liye ham componetns ke adner hi logoutbtn naam ka components banayenge 
