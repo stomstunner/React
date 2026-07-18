@@ -214,3 +214,6 @@ and ham bass uss logo ko return kar denge
 ---
 ## the header section is quite  intresting ki ham bass unhi ko logout buton dikhayenge jo login hai aur aur jo login nahi hai unko login button dikhayenge  
 ## so uske liye ham componetns ke adner hi logoutbtn naam ka components banayenge 
+
+---
+## now we make a common button jisse ki ham har jagha use karnege as a componets jo ki bass ek text accept kaerge jisse ham children bol denge 
