@@ -217,3 +217,8 @@ and ham bass uss logo ko return kar denge
 
 ---
 ## now we make a common button jisse ki ham har jagha use karnege as a componets jo ki bass ek text accept kaerge jisse ham children bol denge 
+
+--- 
+## now we make a input file jisme ki ham refrence lenge hamre input field ka kyuki ham sare jahaha ek same hi input field daal rahe hai toh hame pass koi refrence hona chiaye
+
+## so ham ek hi input field har jagah use karene toh ager ham usse login me ya kahi aur bhi use kar rahe hai toh uska hame refrence dena parega thats why we are using the forward ref 
