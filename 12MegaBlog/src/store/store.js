@@ -4,5 +4,5 @@ import {configureStore} from '@reduxjs/toolkit'
 //store bana ke export kar do 
 
 export const store = configureStore({
-    reducer : {}
+    reducer : {     }
 })
