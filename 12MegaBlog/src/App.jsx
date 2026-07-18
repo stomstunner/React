@@ -57,7 +57,7 @@ function App() {
 
       </main>
       <Footer/>
-    </div>
+    </div>  
   </div>
 ) : null
 }
