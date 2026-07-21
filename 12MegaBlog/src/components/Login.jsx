@@ -14,7 +14,7 @@ function Login() {
     // and the main thing that we use is hook form 
     const {register, handleSubmit} = useForm();
     // for error handling
-    const [error, setError] = useState()
+    const [error, setError] = useState("")
 
     // now we make the login method // hamne handle submit naam ka method banaya tha but uska usage alag hai 
 
@@ -105,7 +105,7 @@ function Login() {
                             {...register("email",{
                                 required:true,
                                 validate:{
-                                    matchPatern: (value) => /^\w+( [ .- ]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test (value) ||
+                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test (value) ||
                                     "Email address must be a valid address",
                                 }
                             })}
