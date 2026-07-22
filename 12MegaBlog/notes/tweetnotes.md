@@ -374,3 +374,11 @@ function Login() {
 }
 export default Login
 ```
+
+----
+
+## after the login component we make the signup componet 
+
+---
+
+## then we make the authLayout for protect purpose
