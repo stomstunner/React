@@ -86,6 +86,7 @@ function PostForm({post}) {
     },[])  
 
     // now we use the react.useEffect
+    React
 
   return (
     <div>PostForm</div>
