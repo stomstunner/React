@@ -420,3 +420,5 @@ export default function RTE() {
 
 ```
 
+---
+## after writing the RTE we make a post form folder and inside it we make the post form file in `components`
