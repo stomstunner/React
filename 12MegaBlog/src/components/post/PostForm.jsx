@@ -73,7 +73,19 @@ function PostForm({post}) {
         }
     }
 
-    // now we make the slugTransform function that is nothign but the change the title into a slug bass jaha jaha soace aayega usko - me convert kar dege 
+    // now we make the slugTransform function that is nothign but the change the title into a slug bass jaha jaha soace aayega usko - me convert kar 
+    const slugTransform = useCallback((value) => {
+        if(value && typeof value === 'string'){
+            return value
+            .trim()
+            .toLowerCase()
+            .replace(/^[a-zA-Z\d\s]+/g, '-')
+            .replace(/\s/g,'-')
+        }
+        return ""
+    },[])  
+
+    // now we use the react.useEffect
 
   return (
     <div>PostForm</div>
