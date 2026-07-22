@@ -14,6 +14,7 @@ function AllPosts() {
     })
   return (
     <div className='py-8 w-full'>
+        {/* wrap with container */}
         <Container>
             <div className='flex flex-wrap'>
                 {posts.map((posts) => (
