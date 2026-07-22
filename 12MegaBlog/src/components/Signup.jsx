@@ -90,7 +90,7 @@ function Signup() {
                             }
                         })}
                     />
-                    <Input
+                    <Input   
                         label="Password: "
                         type="password"
                         placeholder="Enter your password"
