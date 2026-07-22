@@ -3,6 +3,8 @@ import { Signup as SignupComponent } from '../components'
 function Signup() {
   return (
     <div className='py-8'>
+                {/* no wrap with container */}
+
         <SignupComponent/>
     </div>
   )
