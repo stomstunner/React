@@ -6,6 +6,7 @@ import appwriteservice from '../appwrite/config'
 // we need the id title and featured image from the appwrite 
 // id ka syntax aissa hi hai appwrite me 
 function PostCard({$id,title, featuredImage}) {
+    //  console.log("featuredImage:", featuredImage);
   return (
     
     <Link
