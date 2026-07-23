@@ -97,7 +97,7 @@ export class Authservice {
 
     async logout(){
         try {
-            await this.account.deleteSessions()
+            await this.account.deleteSessions();
         } catch (error) {
             throw error;
         }
