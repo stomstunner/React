@@ -4,6 +4,7 @@ const conf = {
     appwriteDatabaseId: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
     appwriteCollectionId: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID),
     appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
+    tinymceApiKey: String(import.meta.env.VITE_TINYMCE_API_KEY),
 
 }
 // ham ye object ke ander sabhi jo secret key hai uska access lenge aur uska ek key vlaue pair store karnge  but make sure ki ham usko String me store rakhe 
