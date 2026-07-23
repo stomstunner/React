@@ -844,3 +844,221 @@ SDK Version check karo.
 ```bash
 npm list appwrite
 ```
+
+
+## TinyMCE API Key Issue
+
+TinyMCE open ho raha tha lekin editor disabled tha aur console me API key validation aur 404 errors aa rahe the. Reason ye tha ki `apiKey=""` tha aur `.env` se API key pass nahi ho rahi thi. Isko fix karne ke liye TinyMCE ki free API key generate ki, `.env` me `VITE_TINYMCE_API_KEY` add ki, `conf.js` me export ki aur RTE component me `apiKey={conf.tinymceApiKey}` use kiya. Iske baad editor aur plugins dono sahi chalne lage.
+
+---
+
+## Storage Initialization Bug
+
+Image upload karte waqt `Cannot read properties of undefined` aa raha tha. Kaafi der baad pata chala ki constructor me galti thi.
+
+Galat:
+
+```js
+this.bucket = new Storage(this.bucket)
+```
+
+Sahi:
+
+```js
+this.bucket = new Storage(this.client)
+```
+
+Storage hamesha `Client` object se banta hai, bucket se nahi.
+
+---
+
+## Databases Variable Typo
+
+`createDocument()` undefined aa raha tha. Reason sirf spelling mistake thi.
+
+Galat:
+
+```js
+this.databses
+```
+
+Sahi:
+
+```js
+this.databases
+```
+
+Ek choti si typo ki wajah se pura service object hi fail ho gaya.
+
+---
+
+## Missing userId Attribute
+
+Post create karte waqt Appwrite error de raha tha:
+
+```
+Missing required attribute "userId"
+```
+
+Database me `userId` required tha lekin createPost me send hi nahi ho raha tha. Fix ye tha ki post create karte waqt current logged-in user ka id bhejna tha.
+
+```js
+userId: userData.$id
+```
+
+Aur createDocument ke object me bhi `userId` include karna tha.
+
+---
+
+## Image Preview Issue
+
+Images bucket me upload ho rahi thi, database me `featuredImage` id bhi save ho rahi thi, lekin UI me preview nahi aa raha tha. Sabse pehle bucket permissions, file security aur database values verify ki. Sab sahi nikla, isliye problem code me thi.
+
+Baad me pata chala ki Appwrite SDK version change hone ki wajah se preview method ka behavior change ho gaya tha.
+
+---
+
+## getFilePreview() vs getFileView()
+
+Mere project me `appwrite@26.x` install tha. Is version me `getFilePreview()` properly work nahi kar raha tha. Service ke andar `getFileView()` use kiya aur UI me koi change nahi karna pada.
+
+Service:
+
+```js
+getFilePreview(fileId) {
+    return this.bucket.getFileView(
+        conf.appwriteBucketId,
+        fileId
+    )
+}
+```
+
+UI:
+
+```jsx
+<img src={appwriteService.getFilePreview(featuredImage)} />
+```
+
+Service ke andar implementation change karne se poore project me automatically fix ho gaya.
+
+---
+
+## AllPosts Props Issue
+
+`PostCard` component destructuring use kar raha tha.
+
+```jsx
+function PostCard({ $id, title, featuredImage })
+```
+
+Lekin main props aise bhej raha tha.
+
+```jsx
+<PostCard post={post} />
+```
+
+Isliye `featuredImage` undefined ho raha tha.
+
+Correct:
+
+```jsx
+<PostCard {...post} />
+```
+
+Spread operator ki wajah se sari properties direct component ko mil gayi.
+
+---
+
+## Logout Button Bug
+
+Console me error aa raha tha:
+
+```
+logout.then is not a function
+```
+
+Reason ye tha ki function ko call hi nahi kar raha tha.
+
+Galat:
+
+```js
+authService.logout.then(...)
+```
+
+Sahi:
+
+```js
+await authService.logout();
+dispatch(logout());
+```
+
+Ya
+
+```js
+authService.logout().then(...)
+```
+
+Lesson: `.then()` sirf Promise pe lagta hai, function pe nahi.
+
+---
+
+## Redux Refresh Bug
+
+Ye sabse confusing bug tha. Login aur Logout successfully ho raha tha lekin Edit/Delete button tab tak nahi aa raha tha jab tak page manually refresh na karu.
+
+Reason App.jsx me tha.
+
+Galat:
+
+```js
+dispatch(login({ userData }))
+```
+
+Isse Redux state aise ban rahi thi.
+
+```js
+state.auth.userData = {
+    userData: { ... }
+}
+```
+
+Poora project expect kar raha tha.
+
+```js
+state.auth.userData.$id
+```
+
+Lekin actual structure tha.
+
+```js
+state.auth.userData.userData.$id
+```
+
+Isi wajah se refresh ke baad hi sab sahi hota tha.
+
+Fix:
+
+```js
+dispatch(login(userData))
+```
+
+Uske baad Redux state sahi bani aur login/logout ke turant baad Header, Edit button aur Delete button sab instantly update hone lage.
+
+---
+
+## Debugging Process
+
+Har bug me direct code change nahi kiya. Pehle console check kiya, network requests dekhi, Appwrite database verify kiya, bucket verify kiya, Redux state print ki, aur SDK documentation bhi check ki. Kai baar problem backend me lag rahi thi lekin actual issue frontend me nikla aur kai baar frontend sahi tha lekin Appwrite configuration galat thi.
+
+Console debugging bahut useful rahi.
+
+```js
+console.log(userData)
+console.log(post)
+console.log(featuredImage)
+console.log(authStatus)
+```
+
+Ye logs hi almost har bug ka root cause batane me help kar rahe the.
+
+---
