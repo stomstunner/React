@@ -23,12 +23,12 @@ export class Authservice {
     // lets make the constructor kyuki ham chahate hai ki jaisse hi client call ho tab ye chale 
     constructor(){
         this.client
-        .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectId)
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectId);
 
         // now we initilize the account with the defined way ki jaisse hi ye authService call ho toh pahele constructer se hamre client ka value initilize ho jaye aur thab hahamre account ka value bhi 
 
-        this.account = new Account(this.client)
+        this.account = new Account(this.client);
     }
 
     // now we make a calss ki ham jaisse hi iss authservice se create account bananana chahate hai toh ham bass appwrite ke fucntion ko call kar denge 
@@ -59,14 +59,23 @@ export class Authservice {
     // now we make  a login functionality jo ki user se bass email aur password lega 
     // and login karne ke liye hamre pass createEmailSession hota hai 
 
-    async login ( { email, password}){
-        try {
-            // yaha pe ham direct return kar denge hamre jo bhi chiz aayega login session create karne ke baad 
+    // async login ( { email, password}){
+    //     try {
+    //         // yaha pe ham direct return kar denge hamre jo bhi chiz aayega login session create karne ke baad 
 
-            const session =  this.account.createEmailPasswordSession(email, password)
-            return session 
+    //         const session =  await  this.account.createEmailSession(email, password)
+    //         return session 
+    //     } catch (error) {
+    //         throw error
+    //     }
+    // }
+
+    async login({email, password}) {
+        try {
+            return await this.account.createEmailPasswordSession(email, password);
+            
         } catch (error) {
-            throw error
+            throw error;
         }
     }
 
@@ -78,7 +87,7 @@ export class Authservice {
             return await this.account.get()
             // so hamare pass ye accout.get  kar ke property aathi hai jo ki hamra abhi current status baanta hai 
         } catch (error) {
-                throw error
+                console.log("Appwrite serive :: getCurrentUser :: error", error);
         }
         // yaha try catch ke baar aa ke ham return kar denge null ko kisse ahmra ager abhi kuch nahi aayega account.get se toh null aaeyga hi return toh hoga hi null in try but ager ksis bhi wajah se ahmra try catch me problem aa gai toh bahar ham return kar denge null ko 
         return null;
@@ -88,7 +97,7 @@ export class Authservice {
 
     async logout(){
         try {
-            return await this.account.deleteSessions()
+            await this.account.deleteSessions()
         } catch (error) {
             throw error;
         }
