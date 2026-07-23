@@ -11,7 +11,7 @@ export class Service{
     // now we make the client 
     client = new Client()
     // now we make the variable jisse ki ham cnstructore me initilize karnege
-    databses;
+    databases;
     bucket; // name for storage 
 
     constructor(){
@@ -21,7 +21,7 @@ export class Service{
 
         // now hame databse aur bucket hmara hamesha client se hi banta hai 
         this.databases = new Databases(this.client)
-        this.bucket = new Storage(this.bucket)
+        this.bucket = new Storage(this.client)
 
     }
     // now in the class we make a method jo ki post create karega
@@ -29,7 +29,7 @@ export class Service{
     async createPost({title, slug, content, featuredImage, status, userId}){
         try {
             // here we return in await hamra ek created post jo ki hamra return karega databse se createDocument ka use kar ke 
-            return await this.databses.createDocument(
+            return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,    
@@ -71,15 +71,15 @@ export class Service{
     // now we make the deletedocument feature ki delete karne ke liye kye ky chaiye 
     async deletePost(slug){
         try {
-            this.databases.deleteDocument(
+            await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
             )
             // now we juct return true and we have to handle the true on front end 
             return true;
-        } catch (error) {
-            throw error ;
+        }catch(error){
+            console.log(error)
             return false
         }
     }
@@ -148,7 +148,7 @@ export class Service{
 
     // now we make the filePreview function jisse call kar ke ham ui pe compress image show kar sake 
 
-    async getFilePreview(fileId){
+    getFilePreview(fileId){
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
