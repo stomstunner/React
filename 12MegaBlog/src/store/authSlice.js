@@ -28,7 +28,8 @@ const authSlice = createSlice({
             // initial state me hamare pass status and userdata hai 
             state.status = true;
             // ye true hame bata raha hai ki ham abhi login hai 
-            state.userData = action.payload.userData;   
+            state.userData = action.payload;   
+            // state.userData = action.payload.userData;   
 
         },
 
@@ -36,6 +37,7 @@ const authSlice = createSlice({
 
         logout : (state) => {
             state.status = false;
+            state.userData = null;
         }
 
 
