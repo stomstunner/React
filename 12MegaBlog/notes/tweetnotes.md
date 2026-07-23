@@ -422,3 +422,425 @@ export default function RTE() {
 
 ---
 ## after writing the RTE we make a post form folder and inside it we make the post form file in `components`
+
+
+----
+
+> Ye notes maine project banate time banaye hain taaki future me same galti dubara na karu.
+
+---
+
+# 1. Appwrite Login Issue
+
+## Problem
+
+Login nahi ho raha tha.
+
+Error aa raha tha ki:
+
+```js
+createEmailSession is not a function
+```
+
+## Reason
+
+Main latest Appwrite SDK use kar raha tha (`appwrite@26.2.0`) aur Hitesh sir ka tutorial purane SDK pe tha.
+
+## Wrong
+
+```js
+this.account.createEmailSession(email, password)
+```
+
+## Correct
+
+```js
+this.account.createEmailPasswordSession(email, password)
+```
+
+### Lesson
+
+⚠️ Kabhi bhi tutorial blindly mat follow karo.
+
+Pehle check karo:
+
+```bash
+npm list appwrite
+```
+
+Agar SDK latest hai aur tutorial purana hai to documentation bhi check karni chahiye.
+
+---
+
+# 2. Signup Button Click hi nahi ho raha tha
+
+## Reason
+
+Password register hi nahi hua tha.
+
+Galti:
+
+```jsx
+{...register("password"), {
+    required: true
+}}
+```
+
+Sahi:
+
+```jsx
+{...register("password", {
+    required: true
+})}
+```
+
+### Lesson
+
+`register()` ke andar hi validation object pass hota hai.
+
+Ek comma ki galti pura form tod sakti hai. 😭
+
+---
+
+# 3. Home Page pe hamesha
+
+```
+Login to read posts
+```
+
+hi aa raha tha.
+
+## Reason
+
+Array ko number se compare kar diya tha.
+
+Wrong
+
+```js
+if(posts === 0)
+```
+
+Correct
+
+```js
+if(posts.length === 0)
+```
+
+### Lesson
+
+Array check karna ho to hamesha `.length` use karo.
+
+---
+
+# 4. Redux Login State
+
+Page refresh karte hi logout ho ja raha tha.
+
+## Fix
+
+App load hote hi
+
+```js
+authService.getCurrentUser()
+```
+
+call kiya.
+
+Agar user mila
+
+```js
+dispatch(login(userData))
+```
+
+warna
+
+```js
+dispatch(logout())
+```
+
+---
+
+# 5. Missing required attribute "userId"
+
+Error
+
+```
+Missing required attribute "userId"
+```
+
+## Reason
+
+Database me `userId` required tha lekin createPost ke time send hi nahi kar raha tha.
+
+Fix
+
+```js
+const dbPost = await appwriteService.createPost({
+    ...data,
+    userId: userData.$id,
+})
+```
+
+### Lesson
+
+Database ka attribute name aur code ka key same hona chahiye.
+
+Ek letter bhi alag hua to Appwrite seedha error de deta hai.
+
+---
+
+# 6. createDocument() Undefined
+
+Error
+
+```
+Cannot read properties of undefined (reading 'createDocument')
+```
+
+## Reason
+
+Typing mistake 🤡
+
+Wrong
+
+```js
+this.databses
+```
+
+Correct
+
+```js
+this.databases
+```
+
+### Lesson
+
+Kabhi kabhi pura bug sirf spelling mistake hota hai.
+
+Console error dhyan se padhna chahiye.
+
+---
+
+# 7. Storage Initialization
+
+Wrong
+
+```js
+this.bucket = new Storage(this.bucket)
+```
+
+Correct
+
+```js
+this.bucket = new Storage(this.client)
+```
+
+### Lesson
+
+Storage hamesha Client object se banta hai.
+
+---
+
+# 8. AllPosts Bug
+
+Main aise pass kar raha tha
+
+```jsx
+<PostCard post={post}/>
+```
+
+Lekin component expect kar raha tha
+
+```jsx
+function PostCard({ $id, title, featuredImage })
+```
+
+Isliye
+
+```js
+featuredImage = undefined
+```
+
+ho gaya.
+
+Correct
+
+```jsx
+<PostCard {...post}/>
+```
+
+### Lesson
+
+Spread operator kab use karna hai ye samajhna bahut important hai.
+
+---
+
+# 9. useEffect Mistake
+
+Main API call bahar likh diya tha.
+
+Wrong
+
+```js
+useEffect(()=>{},[])
+
+appwriteService.getPosts()
+```
+
+Correct
+
+```js
+useEffect(()=>{
+    appwriteService.getPosts()
+},[])
+```
+
+### Lesson
+
+API calls hamesha `useEffect` ke andar.
+
+---
+
+# 10. TinyMCE API Key
+
+Error
+
+```
+API key could not be validated
+```
+
+## Reason
+
+API key hi nahi dali thi.
+
+Fix
+
+```env
+VITE_TINYMCE_API_KEY=xxxxxxxx
+```
+
+### Lesson
+
+TinyMCE free hai.
+
+Lekin API key lena compulsory hai.
+
+---
+
+# 11. Image Preview Not Working 🔥
+
+Ye sabse mast debugging thi 😂
+
+## Pehla doubt
+
+- Bucket Permission
+- File upload
+- Database
+- React
+- Appwrite
+
+Sab check kiya.
+
+Sab sahi tha.
+
+---
+
+Console me check kiya
+
+```js
+console.log(featuredImage)
+```
+
+Output
+
+```
+6a6210920011921de3de
+```
+
+Matlab
+
+✅ Database sahi
+
+Fir
+
+```js
+console.log(getFilePreview(...))
+```
+
+URL bhi ban raha tha.
+
+Fir check kiya
+
+✅ Storage
+
+✅ Database
+
+✅ Permissions
+
+Sab perfect.
+
+---
+
+## Root Cause
+
+Main latest Appwrite SDK use kar raha tha.
+
+Tutorial purane SDK pe tha.
+
+Old
+
+```js
+getFilePreview(fileId)
+```
+
+Latest SDK me
+
+```js
+getFileView(fileId)
+```
+
+use karna pada.
+
+Bas ye change karte hi image aa gayi. 😂
+
+---
+
+# 12. Sabse Important Debugging Rule
+
+Kabhi bhi directly solution mat dhundo.
+
+Step by step check karo.
+
+### Step 1
+
+Console Error padho.
+
+### Step 2
+
+Data aa raha hai ya nahi
+
+```js
+console.log()
+```
+
+se verify karo.
+
+### Step 3
+
+Database check karo.
+
+### Step 4
+
+Storage check karo.
+
+### Step 5
+
+Permissions check karo.
+
+### Step 6
+
+SDK Version check karo.
+
+```bash
+npm list appwrite
+```
