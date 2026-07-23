@@ -4,6 +4,7 @@ import React from 'react'
 import {Editor} from '@tinymce/tinymce-react'
 // lets import the controller from react hook form 
 import {Controller} from 'react-hook-form'
+import conf from "../conf/conf";
 
 
 
@@ -27,6 +28,8 @@ export default function RTE({name, control, label, defaultValue = ""}) {
             // so ab ham ky kya render karwana chahate hai woh likhenge .. aur un sabhi ko hi ham field bol denge aur we can write ki field pe kon sa action hone pe ham render karwana chate hai aur call banck ke ander body me ham likhnge ki kya ham render karwana chahte hai 
             render = {( {field : {onChange}})=> (
                 <Editor
+
+                    apiKey={conf.tinymceApiKey}
                     // we have to write some property along with it 
                     initialValue={defaultValue}
                     init={
@@ -37,9 +40,23 @@ export default function RTE({name, control, label, defaultValue = ""}) {
                             menubar: true,
                             // we can write the plugings that we want to give 
                             plugins: [
-                                'advlist autolink lists link image charmap print preview anchor',
-                                'searchreplace visualblocks code fullscreen',
-                                'insertdatetime media table paste code help wordcount'
+                                    "advlist",
+                                    "autolink",
+                                    "lists",
+                                    "link",
+                                    "image",
+                                    "charmap",
+                                    "preview",
+                                    "anchor",
+                                    "searchreplace",
+                                    "visualblocks",
+                                    "code",
+                                    "fullscreen",
+                                    "insertdatetime",
+                                    "media",
+                                    "table",
+                                    "help",
+                                    "wordcount"
                             ],
                             toolbar: 'undo redo | blocks| image | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help ',
                             content_style: 'body { font-family:Helvetica, Arial, sans-serif; font-size: 14px}'
