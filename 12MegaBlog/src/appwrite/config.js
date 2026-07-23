@@ -149,7 +149,7 @@ export class Service{
     // now we make the filePreview function jisse call kar ke ham ui pe compress image show kar sake 
 
     getFilePreview(fileId){
-        return this.bucket.getFilePreview(
+        return this.bucket.getFileView(
             conf.appwriteBucketId,
             fileId
         )
