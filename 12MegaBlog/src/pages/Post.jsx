@@ -11,7 +11,8 @@ export default function Post() {
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.auth.userData);
-
+// console.log("Current User:", userData);
+// console.log("Post User:", post.userId);
     // this is the logic for giving the author identification to a user so when any user is the auther to the specfic post then only they can edit or delete the post 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
 
