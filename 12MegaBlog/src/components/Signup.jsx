@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import authservice from '../appwrite/auth'
 import {Link, useNavigate} from 'react-router-dom'
 import { login } from '../store/authSlice'
-import {Button, Input, Logo} from "./index"
+import {Button, Input, Logo} from "./index.js"
 import { useDispatch } from 'react-redux'
 import {useForm} from 'react-hook-form'
 
@@ -51,12 +51,12 @@ function Signup() {
                 className=' mt-2 text-center text-base text-black/60 '
             >
                 Already have an account?&nbsp;
-                <link
+                <Link
                     to="/login"
                     className='font-medium text-pretty transition-all duration-200 hover:underline '
                 >
                     Sign In
-                </link>
+                </Link>
             </p>
             {error &&
                 <p
@@ -90,13 +90,13 @@ function Signup() {
                             }
                         })}
                     />
-                    <Input   
+                    <Input
                         label="Password: "
                         type="password"
                         placeholder="Enter your password"
-                        {...register('password'),{
-                            required:true,
-                        }} 
+                        {...register("password", {
+                            required: true,
+                        })}
                     />
                     <Button
                         type="submit" 
