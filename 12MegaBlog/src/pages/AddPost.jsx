@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container , PostFrom} from '../components'   
+import { Container , PostForm} from '../components'   
 
 
 function AddPost() {
@@ -7,7 +7,7 @@ function AddPost() {
     <div className='py-8'>
 {/* wrap with container */}
         <Container>
-            <PostFrom/>
+            <PostForm/>
         </Container>
     </div>
   )
