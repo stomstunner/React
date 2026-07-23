@@ -1,13 +1,13 @@
 import React from "react";
 // so logout ke liye ham kuch chize import karwani hofi jaisse
 // logout ke bass we need dispatch and logout services
-import { logout } from "../../store/authSlice";
 // and we need dispatch ki hamko kuch bejna bhi parega authservice ko
 import { useDispatch } from "react-redux";
 
 // and hamra logout jo hai woh auth service ke adner hi hai toh usko bhi lana parega
 
 import authservice from "../../appwrite/auth";
+import { logout } from "../../store/authSlice";
 
 function LogoutBtn() {
   // we dispatch something so we make a dispatch
@@ -24,12 +24,14 @@ function LogoutBtn() {
 
   return (
     <button
+      onClick={logoutHandler}
       className="
     group relative overflow-hidden px-6 py-2.5 rounded-xl
     bg-gradient-to-r from-violet-600 to-indigo-600
     text-white font-semibold transition-all duration-300
     hover:scale-105
   "
+
     >
       <span
         className="
