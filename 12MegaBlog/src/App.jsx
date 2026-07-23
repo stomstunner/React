@@ -53,7 +53,8 @@ function App() {
       <Header/>
       {/* ab ham header aur footer ke ander ham kcuh bhi componets diaplay karwa sakte hai isko outlet bol dete hai  */}
       <main>
-      TODO: {/* <Outlet/> */}
+      {/* //TODO:  */}
+      <Outlet/>
 
       </main>
       <Footer/>
