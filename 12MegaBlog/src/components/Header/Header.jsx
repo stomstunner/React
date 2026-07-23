@@ -7,13 +7,16 @@ import { Link } from "react-router-dom";
 // we need selector kyuki ham usse hi dekh sakte hai ki user login hai ya nahi store se check karne ke liye
 import { useSelector } from "react-redux";
 
+
 // for naviate
 import { useNavigate } from "react-router-dom";
 
 function Header() {
   // lets make the varibel that chekc the auth status feom the store jo ki ham dehnge authslice se
   const authStatus = useSelector((state) => state.auth.status);
+  const auth = useSelector((state) => state.auth);
 
+console.log(auth);
   // like we make the diapstch we use the naviagate for naviate
   const naviagate = useNavigate();
 
