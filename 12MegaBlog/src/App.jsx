@@ -27,7 +27,7 @@ function App() {
     authservice.getCurrentUser()
     .then((userData)=>{
       if(userData){
-        dispatch(login({userData}))
+        dispatch(login(userData))
         // dispatch ke adner ham login ko pass karnege jiske ander hoga hamra user data object me
       }else{
         // so ham else me ager userdata nahi mila hai toh ham diaptch kar denge logout ko .. kyuki ham chahate hai ki jaisse hi hamra page load ho toh use effect ki help se ham hamesha apna state update rakhe ki ager userdata hai toh login karo nahi hai toh logout rakho 
