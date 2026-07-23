@@ -14,13 +14,23 @@ function LogoutBtn() {
   const dispatch = useDispatch();
 
   // and hamra jo logout button hoga uspe click kane se kuch hoga toh uske liye ham handleLogoutbtn bana lenge
-  const logoutHandler = () => {
-    // we use the authService ka logout jo ki dega hame ek promise ki mai session ko delete kar dunga
-    authservice.logout.then(() => {
-      dispatch(logout());
-      // dispatch karane se hamamra store hamesha updated rehega
-    });
-  };
+  
+  // const logoutHandler = async () => {
+  //   // we use the authService ka logout jo ki dega hame ek promise ki mai session ko delete kar dunga
+  //   await authservice.logout.then(() => {
+  //     dispatch(logout());
+  //     // dispatch karane se hamamra store hamesha updated rehega
+  //   });
+  // };
+
+  const logoutHandler = async () => {
+    try {
+        await authservice.logout();
+        dispatch(logout());
+    } catch (error) {
+        console.log(error);
+    }
+};
 
   return (
     <button
@@ -31,7 +41,6 @@ function LogoutBtn() {
     text-white font-semibold transition-all duration-300
     hover:scale-105
   "
-
     >
       <span
         className="
