@@ -23,13 +23,13 @@ function PostForm({post}) {
 
 
     const navigate = useNavigate()
-    const userData = useSelector((state)=> state.user.userData)
+    const userData = useSelector((state)=> state.auth.userData)
 
     // now we make the function for submit the data 
     const submit = async (data) => {
         // ager hamre pass pahle se hi image tha toh ham wohi image ko layenge aur fir purani image ko delete karnege 
         if(post){
-            const file =   data.image[0] ? appwriteService.uploadFile(data.image[0]) : null
+            const file =   data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null
 
             // if we have the file then we delete the previous image 
             if(file){
@@ -79,7 +79,7 @@ function PostForm({post}) {
             return value
             .trim()
             .toLowerCase()
-            .replace(/^[a-zA-Z\d\s]+/g, '-')
+            .replace(/[^a-zA-Z\d\s]+/g, '-')
             .replace(/\s/g,'-')
         }
         return ""
@@ -92,7 +92,11 @@ function PostForm({post}) {
         const subscription = watch((value, {name})=>{
             if(name === 'title'){
                 // so here we fill the slugTransform ke adner ka value in the slug
-                setValue('slug', slugTransform(value.title, {shouldValidate: true}))
+                setValue(
+                    "slug",
+                    slugTransform(value.title),
+                    { shouldValidate: true }
+                )
             }
         })
 
